@@ -21,6 +21,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        nc.addObserver(self, selector: #selector(self.updateForRemainingSwipes), name: NSNotification.Name(rawValue: quickAccessNotificationKey), object: nil)
         
         let center = CLLocationCoordinate2DMake(36.007584, -78.914172)
         marketplace  = CLCircularRegion.init(center: center, radius: 20.0, identifier: "Marketplace")
@@ -46,10 +48,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         defaults.setValue(swipeNum, forKey: "sw")
         numSwipeLabel.text = String(swipeNum)
         if(swipeNum == 0) {
-            updateForRemainingSwipes()
-            let alert = UIAlertController(title: "Yo", message: "You have no swipes left", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            sendOutOfSwipesNotification()
         }
         
     }
@@ -57,10 +56,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     func updateForRemainingSwipes() {
         numSwipeLabel.text = String(defaults.integer(forKey: "sw"))
         if(numSwipeLabel.text == "0") {
+            sendOutOfSwipesNotification()
             useSwipeButton.isEnabled = false
         } else {
             useSwipeButton.isEnabled = true
         }
+    }
+    
+    func sendOutOfSwipesNotification() {
+        let alert = UIAlertController(title: "Yo", message: "You have no swipes left", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

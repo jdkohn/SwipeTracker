@@ -16,4 +16,5 @@ let SeptemberFifth = 1473051600
 
 let defaults : UserDefaults = UserDefaults.standard
 
-let notificationCenter = NotificationCenter()
+let nc = NotificationCenter.default
+let quickAccessNotificationKey = "jk.UsedQuickAccess"

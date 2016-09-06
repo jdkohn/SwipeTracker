@@ -66,6 +66,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
+        
+        nc.post(Notification(name: Notification.Name(rawValue: quickAccessNotificationKey)))
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
