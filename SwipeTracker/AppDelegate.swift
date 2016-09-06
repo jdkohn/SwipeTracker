@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +18,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            // Enable or disable features based on authorization.
+        }
+        application.registerForRemoteNotifications()
+        
+        defaults.synchronize()
+        
+        //checks to add in number of swipes if doesn't exist yet
+        if((defaults.object(forKey: "sw")) == nil) {
+            defaults.setValue(12, forKey: "sw")
+        }
+        
+        //checks to see if a new week to update number of swipes
+        let unix = Int(Date().timeIntervalSince1970)
+        let timeSinceSept = unix - SeptemberFifth
+        let currWeek = Int(timeSinceSept / OneWeek)
+        print(currWeek)
+        if((defaults.object(forKey: "currentWeek")) == nil) {
+            defaults.setValue(currWeek, forKey: "currentWeek")
+        } else {
+            if(currWeek != defaults.integer(forKey: "currentWeek")) {
+                defaults.setValue(currWeek, forKey: "currentWeek")
+                defaults.setValue(12, forKey: "sw")
+            }
+        }
+        
+        
+        
+        print("!")
+        
         return true
+    }
+
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem,completionHandler: @escaping (Bool) -> Void) {
+        
+        if(shortcutItem.type == "com.jk.SwipeTracker.useoneswipe") {
+            if((defaults.object(forKey: "sw")) == nil) {
+                defaults.setValue(11, forKey: "sw")
+            } else {
+                if(defaults.integer(forKey: "sw") == 0) {
+                    //send notification
+                } else {
+                    defaults.setValue(defaults.integer(forKey: "sw") - 1, forKey: "sw")
+                }
+            }
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

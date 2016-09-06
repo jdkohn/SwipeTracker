@@ -15,6 +15,8 @@
 		2CA3E6861D7CAD9D00760185 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CA3E6841D7CAD9D00760185 /* LaunchScreen.storyboard */; };
 		2CA3E6911D7CAD9D00760185 /* SwipeTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA3E6901D7CAD9D00760185 /* SwipeTrackerTests.swift */; };
 		2CA3E69C1D7CAD9D00760185 /* SwipeTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA3E69B1D7CAD9D00760185 /* SwipeTrackerUITests.swift */; };
+		2CA3E6AA1D7CB38100760185 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA3E6A91D7CB38100760185 /* Global.swift */; };
+		2CAC86571D7CC9F5004B97C8 /* TestNotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAC86561D7CC9F5004B97C8 /* TestNotificationVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,9 @@
 		2CA3E6971D7CAD9D00760185 /* SwipeTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwipeTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA3E69B1D7CAD9D00760185 /* SwipeTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTrackerUITests.swift; sourceTree = "<group>"; };
 		2CA3E69D1D7CAD9D00760185 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CA3E6A91D7CB38100760185 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		2CAC86551D7CC8B6004B97C8 /* SwipeTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwipeTracker.entitlements; sourceTree = "<group>"; };
+		2CAC86561D7CC9F5004B97C8 /* TestNotificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestNotificationVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +104,11 @@
 		2CA3E6771D7CAD9D00760185 /* SwipeTracker */ = {
 			isa = PBXGroup;
 			children = (
+				2CAC86551D7CC8B6004B97C8 /* SwipeTracker.entitlements */,
 				2CA3E6781D7CAD9D00760185 /* AppDelegate.swift */,
 				2CA3E67A1D7CAD9D00760185 /* ViewController.swift */,
+				2CAC86561D7CC9F5004B97C8 /* TestNotificationVC.swift */,
+				2CA3E6A91D7CB38100760185 /* Global.swift */,
 				2CA3E67C1D7CAD9D00760185 /* Main.storyboard */,
 				2CA3E6821D7CAD9D00760185 /* Assets.xcassets */,
 				2CA3E6841D7CAD9D00760185 /* LaunchScreen.storyboard */,
@@ -198,6 +206,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = J44PM8Q84B;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					2CA3E68B1D7CAD9D00760185 = {
 						CreatedOnToolsVersion = 8.0;
@@ -265,8 +278,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CA3E6AA1D7CB38100760185 /* Global.swift in Sources */,
 				2CA3E6811D7CAD9D00760185 /* SwipeTracker.xcdatamodeld in Sources */,
 				2CA3E67B1D7CAD9D00760185 /* ViewController.swift in Sources */,
+				2CAC86571D7CC9F5004B97C8 /* TestNotificationVC.swift in Sources */,
 				2CA3E6791D7CAD9D00760185 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,6 +434,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SwipeTracker/SwipeTracker.entitlements;
 				DEVELOPMENT_TEAM = J44PM8Q84B;
 				INFOPLIST_FILE = SwipeTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -432,6 +448,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SwipeTracker/SwipeTracker.entitlements;
 				DEVELOPMENT_TEAM = J44PM8Q84B;
 				INFOPLIST_FILE = SwipeTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -514,6 +531,7 @@
 				2CA3E6A21D7CAD9D00760185 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2CA3E6A31D7CAD9D00760185 /* Build configuration list for PBXNativeTarget "SwipeTrackerTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +540,7 @@
 				2CA3E6A51D7CAD9D00760185 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2CA3E6A61D7CAD9D00760185 /* Build configuration list for PBXNativeTarget "SwipeTrackerUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +549,7 @@
 				2CA3E6A81D7CAD9D00760185 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
