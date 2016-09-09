@@ -45,11 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 defaults.setValue(12, forKey: "sw")
             }
         }
-        
-        
-        
-        print("!")
-        
         return true
     }
 
@@ -68,6 +63,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         nc.post(Notification(name: Notification.Name(rawValue: quickAccessNotificationKey)))
+    }
+
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+        print("got notification")
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
